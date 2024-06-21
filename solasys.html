@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(to bottom, #212121, #343434);
+      overflow: hidden;
+    }
+  .container {
+      font-size: 10px;
+      width: 40em;
+      height: 40em;
+      position: relative;
+      perspective: 1000px;
+    }
+  .sun {
+      position: absolute;
+      top: 15em;
+      left: 15em;
+      width: 10em;
+      height: 10em;
+      background-color: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 3em white;
+      animation: pulse 2s infinite;
+    }
+  .earth,.moon,.mars {
+      position: absolute;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+      border-width: 0.1em 0.1em 0 0;
+      border-radius: 50%;
+    }
+  .earth {
+      top: 5em;
+      left: 5em;
+      width: 30em;
+      height: 30em;
+      animation: orbit 36.5s linear infinite;
+      transform-style: preserve-3d;
+    }
+  .moon {
+      top: 0;
+      right: 0;
+      width: 8em;
+      height: 8em;
+      animation: orbit 2.7s linear infinite;
+    }
+  .mars {
+      top: 10em;
+      left: 10em;
+      width: 20em;
+      height: 20em;
+      animation: orbit 20s linear infinite;
+    }
+  .earth::before,.moon::before,.mars::before {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+    }
+  .earth::before {
+      top: 2.8em;
+      right: 2.8em;
+      width: 3em;
+      height: 3em;
+      background-color: aqua;
+      animation: rotate 10s linear infinite;
+    }
+  .moon::before {
+      top: 0.8em;
+      right: 0.2em;
+      width: 1.2em;
+      height: 1.2em;
+      background-color: silver;
+      animation: rotate 5s linear infinite;
+    }
+  .mars::before {
+      top: 1.5em;
+      right: 1.5em;
+      width: 2.8em;
+      height: 2.8em;
+      background-color: red;
+      animation: rotate 7s linear infinite;
+    }
+    @keyframes orbit {
+      to {
+        transform: rotate(720deg);
+      }
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sun"></div>
+    <div class="earth">
+      <div class="moon"></div>
+    </div>
+    <div class="mars"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/0.7.2/draggable.min.js"></script>
+  <script>
+    const earth = document.querySelector('.earth');
+    const moon = document.querySelector('.moon');
+    const mars = document.querySelector('.mars');
+    draggable(earth, {
+      onDrag: () => {
+        // Update the moon's position based on the earth's position
+      }
+    });
+    draggable(moon, {
+      onDrag: () => {
+        // Update the moon's position based on the earth's position
+      }
+   });
+    draggable(mars, {
+      onDrag: () => {
+        // Update the mars' position based on the mouse position
+      }
+    });
+  </script>
+</body>
+</html>
